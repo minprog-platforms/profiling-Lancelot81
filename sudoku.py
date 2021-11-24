@@ -84,8 +84,21 @@ class Sudoku:
         """
         if any('0' in row for row in self._grid):
             return False
-        else:
-            return True
+
+        all = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+        if any(set(self.row_values(i)) != all for i in range(9)):
+            return False
+
+        if any(set(self.column_values(i)) != all for i in range(9)):
+            return False
+
+        if any(set(self.block_values(i)) != all for i in range(9)):
+            return False
+
+
+        return True
+
 
     def __str__(self) -> str:
         representation = ""
